@@ -30,21 +30,21 @@ Smart Expense Tracker is a simple and user-friendly web-based application that h
 
 Smart-Expense-Tracker/
 │
-├── app.py                   # Main application file
-├── requirements.txt         # Python dependencies
-├── database.db              # SQLite database file
+├── app.py # Main application file
+├── requirements.txt # Python dependencies
+├── database.db # SQLite database file
 │
-├── templates/               # HTML files (Jinja2 templates)
-│   ├── base.html
-│   ├── index.html
-│   ├── add.html
-│   ├── view.html
-│   ├── edit.html
+├── templates/ # HTML files (Jinja2 templates)
+│ ├── base.html
+│ ├── index.html
+│ ├── add.html
+│ ├── view.html
+│ ├── edit.html
 │
-├── static/                  # Static files like CSS, JS, CSV
-│   └── transactions_export.csv
-📄 License
-This project is open-source and free to use for learning or personal use.
+├── static/ # Static files like CSS, JS, CSV
+│ └── transactions_export.csv
+
+---
 
 ## 👤 Made by
 **Khizar Ishtiaq**
