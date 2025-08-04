@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}Smart Expense Tracker{% endblock %}</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    /* Reset + base styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0; padding: 0; min-height: 100vh;
+      color: #333;
+    }
+    nav {
+      background-color: #0052cc;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover {
+      background-color: #003d99;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    /* Toast message styles */
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: #28a745;
+      color: white;
+      text-align: center;
+      border-radius: 5px;
+      padding: 1rem;
+      position: fixed;
+      z-index: 1000;
+      right: 2rem;
+      bottom: 2rem;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    #toast.show {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <nav>
+    <a href="/">Dashboard</a>
+    <a href="/add">Add Transaction</a>
+    <a href="/transactions">View Transactions</a>
+    <a href="/export">Export CSV</a>
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <div id="toast">{{ messages[0] }}</div>
+  <script>
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  </script>
+  {% endif %}
+  {% endwith %}
+</body>
+</html>

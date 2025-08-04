@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1 style="text-align: center;">Smart Expense Tracker</h1>
+
+<div class="summary" style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+  <div class="card" style="background: #d4edda; color: #155724; padding: 1rem 2rem; border-radius: 8px;">
+    <h3>Total Income</h3>
+    <p>Rs {{ "%.2f"|format(income) }}</p>
+  </div>
+  <div class="card" style="background: #f8d7da; color: #721c24; padding: 1rem 2rem; border-radius: 8px;">
+    <h3>Total Expense</h3>
+    <p>Rs {{ "%.2f"|format(expense) }}</p>
+  </div>
+  <div class="card" style="background: #d1ecf1; color: #0c5460; padding: 1rem 2rem; border-radius: 8px;">
+    <h3>Balance</h3>
+    <p>Rs {{ "%.2f"|format(balance) }}</p>
+  </div>
+</div>
+
+<h3 style="text-align: center; margin-left:-100px;">Spending by Category</h3>
+<div id="pie-chart" style="max-width: 600px; margin: auto;"></div>
+
+<h3 style="text-align: center; margin-top:50px;">Monthly Income & Expenses</h3>
+<div id="bar-chart" style="max-width: 600px; margin: auto;"></div>
+
+<h3 style="text-align: center; margin-top: 2rem;">Latest 5 Transactions</h3>
+<div style="max-width: 900px; margin: auto;">
+  <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    <thead>
+      <tr style="background: #0052cc; color: white;">
+        <th style="padding: 0.75rem; border-bottom: 1px solid #ddd;">Date</th>
+        <th style="padding: 0.75rem; border-bottom: 1px solid #ddd;">Title</th>
+        <th style="padding: 0.75rem; border-bottom: 1px solid #ddd;">Type</th>
+        <th style="padding: 0.75rem; border-bottom: 1px solid #ddd;">Category</th>
+        <th style="padding: 0.75rem; border-bottom: 1px solid #ddd;">Amount (Rs)</th>
+        <th style="padding: 0.75rem; border-bottom: 1px solid #ddd;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in latest_transactions %}
+      <tr>
+        <td style="padding: 0.5rem; border-bottom: 1px solid #eee;">{{ t[5] }}</td>
+        <td style="padding: 0.5rem; border-bottom: 1px solid #eee;">{{ t[1] }}</td>
+        <td style="padding: 0.5rem; border-bottom: 1px solid #eee;">{{ t[3] }}</td>
+        <td style="padding: 0.5rem; border-bottom: 1px solid #eee;">{{ t[4] }}</td>
+        <td style="padding: 0.5rem; border-bottom: 1px solid #eee;">{{ "%.2f"|format(t[2]) }}</td>
+        <td style="padding: 0.5rem; border-bottom: 1px solid #eee;">
+          <a href="/edit/{{ t[0] }}" style="color: #0052cc; text-decoration: none;">Edit</a> |
+          <a href="/delete/{{ t[0] }}" onclick="return confirm('Are you sure to delete this?')" style="color: #cc0000; text-decoration: none;">Delete</a>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="6" style="text-align:center; padding: 1rem;">No transactions found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Include Plotly JS and charts -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+  var pieData = {{ pie_chart | safe }};
+  var barData = {{ bar_chart | safe }};
+  Plotly.newPlot('pie-chart', pieData.data, pieData.layout);
+  Plotly.newPlot('bar-chart', barData.data, barData.layout);
+</script>
+{% endblock %}

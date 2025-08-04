@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}View Transactions{% endblock %}
+
+{% block content %}
+<h1 style="text-align: center; margin-bottom: 1.5rem;">All Transactions</h1>
+
+<!-- Filter form -->
+<form method="GET" style="max-width: 900px; margin: 0 auto 2rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+  <input type="text" name="search" placeholder="Search Title" value="{{ search_query }}" 
+         style="padding: 0.5rem; border-radius: 5px; border: 1px solid #ccc; flex: 1; min-width: 150px;" />
+
+  <select name="category" style="padding: 0.5rem; border-radius: 5px; border: 1px solid #ccc; min-width: 150px;">
+    <option value="">All Categories</option>
+    {% for cat in categories %}
+    <option value="{{ cat }}" {% if category_filter == cat %}selected{% endif %}>{{ cat }}</option>
+    {% endfor %}
+  </select>
+
+  <input type="date" name="date_from" value="{{ date_from }}" 
+         style="padding: 0.5rem; border-radius: 5px; border: 1px solid #ccc; min-width: 140px;" />
+  <input type="date" name="date_to" value="{{ date_to }}" 
+         style="padding: 0.5rem; border-radius: 5px; border: 1px solid #ccc; min-width: 140px;" />
+
+  <button type="submit" 
+          style="padding: 0.6rem 1rem; background: #0052cc; border: none; color: white; border-radius: 5px; cursor: pointer;">
+    Filter
+  </button>
+</form>
+
+<!-- Transactions table -->
+<table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+  <thead>
+    <tr style="background: #0052cc; color: white;">
+      <th style="padding: 0.75rem; border-bottom: 1px solid #ddd; text-align: left;">Date</th>
+      <th style="padding: 0.75rem; border-bottom: 1px solid #ddd; text-align: left;">Title</th>
+      <th style="padding: 0.75rem; border-bottom: 1px solid #ddd; text-align: left;">Type</th>
+      <th style="padding: 0.75rem; border-bottom: 1px solid #ddd; text-align: left;">Category</th>
+      <th style="padding: 0.75rem; border-bottom: 1px solid #ddd; text-align: left;">Amount (Rs)</th>
+      <th style="padding: 0.75rem; border-bottom: 1px solid #ddd; text-align: left;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in transactions %}
+    <tr>
+      <td style="padding: 0.5rem; border-bottom: 1px solid #eee;">{{ t[5] }}</td>
+      <td style="padding: 0.5rem; border-bottom: 1px solid #eee;">{{ t[1] }}</td>
+      <td style="padding: 0.5rem; border-bottom: 1px solid #eee;">{{ t[3] }}</td>
+      <td style="padding: 0.5rem; border-bottom: 1px solid #eee;">{{ t[4] }}</td>
+      <td style="padding: 0.5rem; border-bottom: 1px solid #eee;">{{ "%.2f"|format(t[2]) }}</td>
+      <td style="padding: 0.5rem; border-bottom: 1px solid #eee;">
+        <a href="/edit/{{ t[0] }}" style="color: #0052cc; text-decoration: none;">Edit</a> |
+        <a href="/delete/{{ t[0] }}" onclick="return confirm('Are you sure to delete this?')" style="color: #cc0000; text-decoration: none;">Delete</a>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="6" style="text-align:center; padding: 1rem;">No transactions found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
