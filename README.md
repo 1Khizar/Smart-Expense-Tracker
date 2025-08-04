@@ -15,17 +15,11 @@ Smart Expense Tracker is a simple and user-friendly web-based application that h
 
 ---
 
-## 🖼️ Screenshots
-
-*Add screenshots here if you have any (optional)*
-
----
-
 ## 🛠️ Technologies Used
 
 - **Python (Flask)** – Backend web framework  
 - **SQLite** – Lightweight database  
-- **HTML & CSS (Bootstrap)** – For UI design  
+- **HTML & CSS** – For UI design  
 - **JavaScript** – For interactivity  
 - **Jinja2** – Templating engine for dynamic content  
 - **Chart.js** – For rendering bar chart of income vs expenses  
