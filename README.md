@@ -26,57 +26,8 @@ Smart Expense Tracker is a simple and user-friendly web-based application that h
 
 ---
 
-## 🚀 Getting Started
+## 📂 Project Structure
 
-Follow these steps to run the project locally:
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/1Khizar/Smart-Expense-Tracker.git
-2. Navigate to the project directory
-bash
-Copy
-Edit
-cd Smart-Expense-Tracker
-3. (Optional) Create a virtual environment
-bash
-Copy
-Edit
-python -m venv venv
-On Windows:
-
-bash
-Copy
-Edit
-venv\Scripts\activate
-On Mac/Linux:
-
-bash
-Copy
-Edit
-source venv/bin/activate
-4. Install dependencies
-bash
-Copy
-Edit
-pip install -r requirements.txt
-5. Run the application
-bash
-Copy
-Edit
-python app.py
-6. Open the app in your browser
-Go to:
-
-cpp
-Copy
-Edit
-http://127.0.0.1:5000
-📂 Project Structure
-csharp
-Copy
-Edit
 Smart-Expense-Tracker/
 │
 ├── app.py                   # Main application file
@@ -95,9 +46,9 @@ Smart-Expense-Tracker/
 📄 License
 This project is open-source and free to use for learning or personal use.
 
-# 👤 Made by
-Khizar Ishtiaq
+## 👤 Made by
+**Khizar Ishtiaq**
 
-🔗 LinkedIn: https://linkedin.com/in/khizar-ishtiaq-716518315
+🔗 **LinkedIn**: https://linkedin.com/in/khizar-ishtiaq-716518315
 
-💻 GitHub: https://github.com/1Khizar
+💻 **GitHub**: https://github.com/1Khizar
