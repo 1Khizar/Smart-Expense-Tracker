@@ -28,6 +28,7 @@ Smart Expense Tracker is a simple and user-friendly web-based application that h
 
 ## 📂 Project Structure
 
+```
 Smart-Expense-Tracker/
 │
 ├── app.py # Main application file
@@ -41,9 +42,9 @@ Smart-Expense-Tracker/
 │ ├── view.html
 │ ├── edit.html
 │
-├── static/ # Static files like CSS, JS, CSV
+├── static/ 
 │ └── transactions_export.csv
-
+```
 ---
 
 ## 👤 Made by
